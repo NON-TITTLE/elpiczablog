@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://elpiczablog.vercel.app
+
+# Sitemaps
+Sitemap: https://elpiczablog.vercel.app/sitemap.xml

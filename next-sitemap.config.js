@@ -3,6 +3,7 @@ module.exports = {
   siteUrl: process.env.SITE_URL || 'https://elpiczablog.vercel.app',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
+  exclude: ['/server-sitemap.xml'],
   robotsTxtOptions: {
     policies: [
       {
@@ -10,5 +11,11 @@ module.exports = {
         allow: '/',
       },
     ],
+    additionalSitemaps: [
+      `${process.env.SITE_URL || 'https://elpiczablog.vercel.app'}/sitemap.xml`,
+    ],
   },
+  changefreq: 'daily',
+  priority: 0.7,
+  sitemapSize: 7000,
 }; 
