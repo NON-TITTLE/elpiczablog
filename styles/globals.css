@@ -2,6 +2,148 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  background-image: url('/mely/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.social-link {
+  @apply text-white/60 hover:text-white transition-colors duration-300;
+}
+
+.nav-link {
+  @apply text-white/80 hover:text-white transition-colors duration-300;
+}
+
+.post-card {
+  @apply glass-card rounded-lg overflow-hidden transition-all duration-300;
+}
+
+.post-card:hover {
+  @apply transform -translate-y-1 shadow-lg;
+}
+
+.prose {
+  @apply max-w-none;
+}
+
+.prose h1 {
+  @apply text-4xl font-bold mb-4;
+}
+
+.prose h2 {
+  @apply text-3xl font-semibold mb-3;
+}
+
+.prose h3 {
+  @apply text-2xl font-semibold mb-2;
+}
+
+.prose p {
+  @apply mb-4 text-white/80;
+}
+
+.prose a {
+  @apply text-blue-400 hover:text-blue-300 transition-colors duration-300;
+}
+
+.prose img {
+  @apply rounded-lg shadow-lg my-4;
+}
+
+.prose code {
+  @apply bg-white/10 px-2 py-1 rounded text-sm;
+}
+
+.prose pre {
+  @apply bg-white/10 p-4 rounded-lg overflow-x-auto;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-white/20 pl-4 italic text-white/70;
+}
+
+.prose ul {
+  @apply list-disc list-inside mb-4;
+}
+
+.prose ol {
+  @apply list-decimal list-inside mb-4;
+}
+
+.prose li {
+  @apply mb-2 text-white/80;
+}
+
 @layer base {
   body {
     @apply bg-gradient-to-b from-gray-900/95 to-gray-800/95 text-gray-100 min-h-screen;
