@@ -3,25 +3,63 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 0, 0, 0;
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-  background-image: url('/mely/background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  min-height: 100vh;
+  background: rgb(var(--background-rgb));
+}
+
+/* Ensure minimum touch target size for all interactive elements */
+button,
+[role="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+a {
+  min-height: 48px;
+  min-width: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure proper spacing for touch targets */
+nav a,
+button,
+[role="button"] {
+  padding: 12px;
+}
+
+/* Ensure proper contrast for text */
+.prose {
+  color: rgb(var(--foreground-rgb));
+}
+
+.prose a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ensure proper spacing for content */
+.container {
+  padding: 1rem;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* Ensure proper spacing for mobile */
+@media (max-width: 640px) {
+  .container {
+    padding: 0.5rem;
+  }
 }
 
 .glass-effect {
@@ -110,14 +148,6 @@ body {
 
 .prose p {
   @apply mb-4 text-white/80;
-}
-
-.prose a {
-  @apply text-blue-400 hover:text-blue-300 transition-colors duration-300;
-}
-
-.prose img {
-  @apply rounded-lg shadow-lg my-4;
 }
 
 .prose code {

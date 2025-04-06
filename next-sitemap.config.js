@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://elpiczablog.vercel.app',
+  siteUrl: process.env.SITE_URL || 'https://pizzalabs.blog',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   exclude: ['/server-sitemap.xml'],
@@ -12,7 +12,7 @@ module.exports = {
       },
     ],
     additionalSitemaps: [
-      `${process.env.SITE_URL || 'https://elpiczablog.vercel.app'}/sitemap.xml`,
+      `${process.env.SITE_URL || 'https://pizzalabs.blog'}/sitemap.xml`,
     ],
   },
   changefreq: 'daily',

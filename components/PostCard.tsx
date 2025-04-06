@@ -8,7 +8,7 @@ interface PostCardProps {
 export default function PostCard({ post }: PostCardProps) {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      <Link href={`/posts/${post.slug}`}>
+      <Link href={`/posts/${post.slug}`} className="block min-h-[48px] min-w-[48px]">
         <div className="relative h-48">
           <img
             src={post.coverImage || '/mely/default-cover.jpg'}
