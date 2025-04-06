@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://pizzalabs.blog',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://pizzalabs.blog',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   exclude: ['/server-sitemap.xml'],
@@ -12,7 +12,8 @@ module.exports = {
       },
     ],
     additionalSitemaps: [
-      `${process.env.SITE_URL || 'https://pizzalabs.blog'}/sitemap.xml`,
+      `${process.env.NEXT_PUBLIC_SITE_URL || 'https://pizzalabs.blog'}/sitemap.xml`,
+      `${process.env.NEXT_PUBLIC_ME_URL || 'https://me.pizzalabs.blog'}/sitemap.xml`,
     ],
   },
   changefreq: 'daily',
