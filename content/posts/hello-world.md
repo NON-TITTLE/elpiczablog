@@ -1,17 +1,30 @@
 ---
 title: "Hello World"
-date: "2024-04-05"
+date: "2024-04-06"
+excerpt: "Welcome to my blog! This is my first post where I'll introduce myself and share my thoughts."
+author: "El Pica"
+coverImage: "/mely/default-cover.jpg"
+tags: ["welcome", "introduction"]
 ---
 
-# Welcome to ElPicza Blog
+# Hello World!
 
-This is your new blog powered by Next.js and Markdown! Here you can write and publish your thoughts, ideas, and experiences.
+Welcome to my blog! I'm excited to share my thoughts and experiences with you.
 
-## Features
+## About Me
 
-- Clean and simple design
-- Markdown support for easy writing
-- Fast and responsive
-- Built with Next.js
+I'm a developer and content creator passionate about technology, blockchain, and innovation.
 
-Stay tuned for more posts coming soon!
+## What to Expect
+
+In this blog, I'll be sharing:
+- Technical tutorials
+- Project updates
+- Industry insights
+- Personal experiences
+
+Stay tuned for more content!
+
+```javascript
+console.log('Hello, World!');
+```

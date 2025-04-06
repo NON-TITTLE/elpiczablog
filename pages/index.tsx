@@ -1,14 +1,12 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+import { GetStaticProps } from 'next';
+import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { getAllPosts } from '../lib/posts';
+import { Post } from '../types/post';
 import Layout from '../components/Layout';
-
-interface Post {
-  slug: string;
-  title: string;
-  date: string;
-}
+import PostCard from '../components/PostCard';
 
 interface HomeProps {
   posts: Post[];
@@ -17,54 +15,66 @@ interface HomeProps {
 export default function Home({ posts }: HomeProps) {
   return (
     <Layout>
-      <div className="space-y-8">
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400 float">
-            ElPicza Blog
-          </h1>
-          <p className="text-xl text-gray-400 fade-in">Developer & Crypto Content Creator</p>
-        </div>
+      <Head>
+        <title>El Pica Blog - Technology and More</title>
+        <meta name="description" content="Personal blog about technology, development, and more" />
+      </Head>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {posts.map(({ slug, title, date }, index) => (
-            <Link 
-              href={`/${slug}`} 
-              key={slug}
-              className="post-card group fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <h2 className="text-xl font-semibold mb-2 text-white group-hover:text-blue-400 transition-colors">
-                {title}
-              </h2>
-              <p className="text-gray-400">
-                {new Date(date).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
-              </p>
+      <div className="max-w-4xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
+          <Image
+            src="/mely/avatar.jpg"
+            alt="Profile"
+            width={120}
+            height={120}
+            className="rounded-full mx-auto mb-6"
+          />
+          <h1 className="text-4xl font-bold mb-4">Welcome to El Pica Blog</h1>
+          <p className="text-xl text-white/80 mb-6">
+            Exploring technology, development, and everything in between
+          </p>
+          <div className="flex justify-center space-x-4">
+            <Link href="/about" className="glass-card px-6 py-2 rounded-lg">
+              About Me
             </Link>
+            <Link href="/contact" className="glass-card px-6 py-2 rounded-lg">
+              Contact
+            </Link>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="grid gap-8 md:grid-cols-2"
+        >
+          {posts.map((post, index) => (
+            <motion.div
+              key={post.slug}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+            >
+              <PostCard post={post} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </Layout>
   );
 }
 
-export async function getStaticProps() {
-  const postsDirectory = path.join(process.cwd(), 'content/posts');
-  const filenames = fs.readdirSync(postsDirectory);
-  const posts = filenames.map((filename) => {
-    const filePath = path.join(postsDirectory, filename);
-    const fileContents = fs.readFileSync(filePath, 'utf8');
-    const { data } = matter(fileContents);
-    const slug = filename.replace(/\.md$/, '');
-    return {
-      slug,
-      title: data.title,
-      date: data.date,
-    };
-  });
+export const getStaticProps: GetStaticProps = async () => {
+  const posts = await getAllPosts();
 
-  return { props: { posts } };
-}
+  return {
+    props: { posts },
+    revalidate: 60, // Revalidate every minute
+  };
+};

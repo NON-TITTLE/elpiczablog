@@ -1,9 +1,9 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
-import { getPostBySlug, getAllPosts } from '../lib/posts';
-import { Post } from '../types/post';
-import Layout from '../components/Layout';
+import { getPostBySlug, getAllPosts } from '../../lib/posts';
+import { Post } from '../../types/post';
+import Layout from '../../components/Layout';
 
 interface PostPageProps {
   post: Post;
@@ -73,4 +73,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
     revalidate: 60,
   };
-};
+}; 
