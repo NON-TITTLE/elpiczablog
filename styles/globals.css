@@ -1,5 +1,77 @@
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background-color: #f0f0f0;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-900 text-gray-100;
+  }
+}
+
+@layer components {
+  .prose {
+    @apply max-w-none;
+  }
+  
+  .prose h1 {
+    @apply text-4xl font-bold mb-4;
+  }
+  
+  .prose h2 {
+    @apply text-3xl font-bold mb-3;
+  }
+  
+  .prose h3 {
+    @apply text-2xl font-bold mb-2;
+  }
+  
+  .prose p {
+    @apply mb-4;
+  }
+  
+  .prose ul {
+    @apply list-disc pl-6 mb-4;
+  }
+  
+  .prose ol {
+    @apply list-decimal pl-6 mb-4;
+  }
+  
+  .prose a {
+    @apply text-blue-400 hover:text-blue-300 transition-colors;
+  }
+  
+  .prose code {
+    @apply bg-gray-800 px-2 py-1 rounded;
+  }
+  
+  .prose pre {
+    @apply bg-gray-800 p-4 rounded-lg mb-4 overflow-x-auto;
+  }
+  
+  .prose blockquote {
+    @apply border-l-4 border-gray-700 pl-4 italic my-4;
+  }
+
+  /* Social Links Animations */
+  .social-link {
+    @apply relative overflow-hidden;
+  }
+
+  .social-link::before {
+    content: '';
+    @apply absolute inset-0 bg-blue-500 opacity-0 transform scale-0 transition-all duration-300;
+  }
+
+  .social-link:hover::before {
+    @apply opacity-10 scale-100;
+  }
+
+  .social-link span {
+    @apply relative z-10;
+  }
+
+  .social-link:hover {
+    @apply transform -translate-y-1 transition-transform duration-300;
+  }
 }
